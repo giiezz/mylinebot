@@ -29,35 +29,50 @@ public class Application {
     @Autowired 
     private LineMessagingService lineMessagingService;
 
-    public static Path downloadedContentDir;
+//    public static Path downloadedContentDir;
 
-    public static void main(String[] args) throws IOException {
-        downloadedContentDir = Files.createTempDirectory("line-bot");
+//    public static void main(String[] args) throws IOException {
+////        downloadedContentDir = Files.createTempDirectory("line-bot");
+//        SpringApplication.run(Application.class, args);
+//    }
+//
+//    @EventMapping
+//    public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
+//        System.out.println("event: " + event);
+//        final BotApiResponse apiResponse = lineMessagingService
+//                .replyMessage(new ReplyMessage(event.getReplyToken(),
+//                                               singletonList(new TextMessage(event.getMessage().getText()))))
+//                .execute().body();
+//        System.out.println("Sent messages: " + apiResponse);
+//    }
+//
+//    @EventMapping
+//    public void defaultMessageEvent(Event event) {
+//        System.out.println("event: " + event);
+//    }
+    
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
     @EventMapping
-    public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
+    public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
-        final BotApiResponse apiResponse = lineMessagingService
-                .replyMessage(new ReplyMessage(event.getReplyToken(),
-                                               singletonList(new TextMessage(event.getMessage().getText()))))
-                .execute().body();
-        System.out.println("Sent messages: " + apiResponse);
+        return new TextMessage(event.getMessage().getText());
     }
 
     @EventMapping
-    public void defaultMessageEvent(Event event) {
+    public void handleDefaultMessageEvent(Event event) {
         System.out.println("event: " + event);
     }
 
-	public static Path getDownloadedContentDir() {
-		return downloadedContentDir;
-	}
-
-	public static void setDownloadedContentDir(Path downloadedContentDir) {
-		Application.downloadedContentDir = downloadedContentDir;
-	}
+//	public static Path getDownloadedContentDir() {
+//		return downloadedContentDir;
+//	}
+//
+//	public static void setDownloadedContentDir(Path downloadedContentDir) {
+//		Application.downloadedContentDir = downloadedContentDir;
+//	}
     
     
 }
