@@ -303,12 +303,12 @@ public class KitchenSinkController {
                                 new URIAction("Go to line.me",
                                               "https://line.me"),
                                 new PostbackAction("Say hello1",
-                                                   "hello ã?“ã?“ã?«ã?¡ã?¯"),
-                                new PostbackAction("è¨€ hello2",
-                                                   "hello ã?“ã?“ã?«ã?¡ã?¯",
-                                                   "hello ã?“ã?“ã?«ã?¡ã?¯"),
+                                                   "hello ÊÇÑÊ´Õ"),
+                                new PostbackAction("? hello2",
+                                                   "hello ÊÇÑÊ´Õ",
+                                                   "hello ÊÇÑÊ´Õ"),
                                 new MessageAction("Say message",
-                                                  "Rice=ç±³")
+                                                  "Rice=¢éÒÇ")
                         ));
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
                 this.reply(replyToken, templateMessage);
@@ -322,14 +322,14 @@ public class KitchenSinkController {
                                         new URIAction("Go to line.me",
                                                       "https://line.me"),
                                         new PostbackAction("Say hello1",
-                                                           "hello ã?“ã?“ã?«ã?¡ã?¯")
+                                                           "hello ÊÇÑÊ´Õ")
                                 )),
                                 new CarouselColumn(imageUrl, "hoge", "fuga", Arrays.asList(
-                                        new PostbackAction("è¨€ hello2",
-                                                           "hello ã?“ã?“ã?«ã?¡ã?¯",
-                                                           "hello ã?“ã?“ã?«ã?¡ã?¯"),
+                                        new PostbackAction("? hello2",
+                                                           "hello ÊÇÑÊ´Õ",
+                                                           "hello ÊÇÑÊ´Õ"),
                                         new MessageAction("Say message",
-                                                          "Rice=ç±³")
+                                                          "Rice=¢éÒÇ")
                                 ))
                         ));
                 TemplateMessage templateMessage = new TemplateMessage("Carousel alt text", carouselTemplate);
