@@ -303,12 +303,12 @@ public class KitchenSinkController {
                                 new URIAction("Go to line.me",
                                               "https://line.me"),
                                 new PostbackAction("Say hello1",
-                                                   "hello สวัสดี"),
+                                                   "hello 1"),
                                 new PostbackAction("? hello2",
-                                                   "hello สวัสดี",
-                                                   "hello สวัสดี"),
+                                                   "hello 1",
+                                                   "hello 1"),
                                 new MessageAction("Say message",
-                                                  "Rice=ข้าว")
+                                                  "Rice=1")
                         ));
                 TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
                 this.reply(replyToken, templateMessage);
@@ -322,14 +322,14 @@ public class KitchenSinkController {
                                         new URIAction("Go to line.me",
                                                       "https://line.me"),
                                         new PostbackAction("Say hello1",
-                                                           "hello สวัสดี")
+                                                           "hello 2")
                                 )),
                                 new CarouselColumn(imageUrl, "hoge", "fuga", Arrays.asList(
                                         new PostbackAction("? hello2",
-                                                           "hello สวัสดี",
-                                                           "hello สวัสดี"),
+                                                           "hello 2",
+                                                           "hello 2"),
                                         new MessageAction("Say message",
-                                                          "Rice=ข้าว")
+                                                          "Rice=2")
                                 ))
                         ));
                 TemplateMessage templateMessage = new TemplateMessage("Carousel alt text", carouselTemplate);
