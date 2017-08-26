@@ -114,52 +114,52 @@ public class KitchenSinkController {
         ));
     }
 
-    @EventMapping
-    public void handleImageMessageEvent(MessageEvent<ImageMessageContent> event) throws IOException {
-        // You need to install ImageMagick
-        handleHeavyContent(
-                event.getReplyToken(),
-                event.getMessage().getId(),
-                responseBody -> {
-                    DownloadedContent jpg = saveContent("jpg", responseBody);
-                    DownloadedContent previewImg = createTempFile("jpg");
-                    system(
-                            "convert",
-                            "-resize", "240x",
-                            jpg.path.toString(),
-                            previewImg.path.toString());
-                    reply(((MessageEvent) event).getReplyToken(),
-                          new ImageMessage(jpg.getUri(), jpg.getUri()));
-                });
-    }
+//    @EventMapping
+//    public void handleImageMessageEvent(MessageEvent<ImageMessageContent> event) throws IOException {
+//        // You need to install ImageMagick
+//        handleHeavyContent(
+//                event.getReplyToken(),
+//                event.getMessage().getId(),
+//                responseBody -> {
+//                    DownloadedContent jpg = saveContent("jpg", responseBody);
+//                    DownloadedContent previewImg = createTempFile("jpg");
+//                    system(
+//                            "convert",
+//                            "-resize", "240x",
+//                            jpg.path.toString(),
+//                            previewImg.path.toString());
+//                    reply(((MessageEvent) event).getReplyToken(),
+//                          new ImageMessage(jpg.getUri(), jpg.getUri()));
+//                });
+//    }
 
-    @EventMapping
-    public void handleAudioMessageEvent(MessageEvent<AudioMessageContent> event) throws IOException {
-        handleHeavyContent(
-                event.getReplyToken(),
-                event.getMessage().getId(),
-                responseBody -> {
-                    DownloadedContent mp4 = saveContent("mp4", responseBody);
-                    reply(event.getReplyToken(), new AudioMessage(mp4.getUri(), 100));
-                });
-    }
+//    @EventMapping
+//    public void handleAudioMessageEvent(MessageEvent<AudioMessageContent> event) throws IOException {
+//        handleHeavyContent(
+//                event.getReplyToken(),
+//                event.getMessage().getId(),
+//                responseBody -> {
+//                    DownloadedContent mp4 = saveContent("mp4", responseBody);
+//                    reply(event.getReplyToken(), new AudioMessage(mp4.getUri(), 100));
+//                });
+//    }
 
-    @EventMapping
-    public void handleVideoMessageEvent(MessageEvent<VideoMessageContent> event) throws IOException {
-        // You need to install ffmpeg and ImageMagick.
-        handleHeavyContent(
-                event.getReplyToken(),
-                event.getMessage().getId(),
-                responseBody -> {
-                    DownloadedContent mp4 = saveContent("mp4", responseBody);
-                    DownloadedContent previewImg = createTempFile("jpg");
-                    system("convert",
-                           mp4.path + "[0]",
-                           previewImg.path.toString());
-                    reply(((MessageEvent) event).getReplyToken(),
-                          new VideoMessage(mp4.getUri(), previewImg.uri));
-                });
-    }
+//    @EventMapping
+//    public void handleVideoMessageEvent(MessageEvent<VideoMessageContent> event) throws IOException {
+//        // You need to install ffmpeg and ImageMagick.
+//        handleHeavyContent(
+//                event.getReplyToken(),
+//                event.getMessage().getId(),
+//                responseBody -> {
+//                    DownloadedContent mp4 = saveContent("mp4", responseBody);
+//                    DownloadedContent previewImg = createTempFile("jpg");
+//                    system("convert",
+//                           mp4.path + "[0]",
+//                           previewImg.path.toString());
+//                    reply(((MessageEvent) event).getReplyToken(),
+//                          new VideoMessage(mp4.getUri(), previewImg.uri));
+//                });
+//    }
 
     @EventMapping
     public void handleUnfollowEvent(UnfollowEvent event) {
@@ -399,37 +399,37 @@ public class KitchenSinkController {
         }
     }
 
-    private static DownloadedContent saveContent(String ext, MessageContentResponse responseBody) {
-        log.info("Got content-type: {}", responseBody);
+//    private static DownloadedContent saveContent(String ext, MessageContentResponse responseBody) {
+//        log.info("Got content-type: {}", responseBody);
+//
+//        DownloadedContent tempFile = createTempFile(ext);
+//        try (OutputStream outputStream = Files.newOutputStream(tempFile.path)) {
+//            ByteStreams.copy(responseBody.getStream(), outputStream);
+//            log.info("Saved {}: {}", ext, tempFile);
+//            return tempFile;
+//        } catch (IOException e) {
+//            throw new UncheckedIOException(e);
+//        }
+//    }
 
-        DownloadedContent tempFile = createTempFile(ext);
-        try (OutputStream outputStream = Files.newOutputStream(tempFile.path)) {
-            ByteStreams.copy(responseBody.getStream(), outputStream);
-            log.info("Saved {}: {}", ext, tempFile);
-            return tempFile;
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
+//    private static DownloadedContent createTempFile(String ext) {
+//        String fileName = LocalDateTime.now().toString() + '-' + UUID.randomUUID().toString() + '.' + ext;
+//        Path tempFile = Application.downloadedContentDir.resolve(fileName);
+//        tempFile.toFile().deleteOnExit();
+//        return new DownloadedContent();
+//    }
 
-    private static DownloadedContent createTempFile(String ext) {
-        String fileName = LocalDateTime.now().toString() + '-' + UUID.randomUUID().toString() + '.' + ext;
-        Path tempFile = Application.downloadedContentDir.resolve(fileName);
-        tempFile.toFile().deleteOnExit();
-        return new DownloadedContent();
-    }
-
-    @Value
-    public static class DownloadedContent {
-        Path path;
-        String uri;
-		public String getUri() {
-			return uri;
-		}
-		public void setUri(String uri) {
-			this.uri = uri;
-		}
-        
-        
-    }
+//    @Value
+//    public static class DownloadedContent {
+//        Path path;
+//        String uri;
+//		public String getUri() {
+//			return uri;
+//		}
+//		public void setUri(String uri) {
+//			this.uri = uri;
+//		}
+//        
+//        
+//    }
 }
